@@ -1,0 +1,103 @@
+/* Configuración general de la página */
+body {
+    background: #d8d8d8;               /* Fondo gris claro */
+    font-family: Arial, sans-serif;    /* Tipo de letra limpia */
+}
+
+/* Caja contenedora de la información */
+.contenedor-info {
+    width: 700px;                      /* Ancho del cuadro */
+    margin: 50px auto;                 /* Centra el cuadro y lo separa del techo */
+    background: #bdb6ab;               /* Fondo color arena */
+    border-radius: 30px;               /* Esquinas muy redondeadas */
+    padding: 40px;                     /* Espacio interno para el contenido */
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.4); /* Sombra oscura alrededor de la caja */
+}
+
+/* Título principal */
+.titulo-info {
+    text-align: center;                /* Centra el texto */
+    color: black;                      /* Letras negras */
+    font-size: 50px;                   /* Tamaño de letra gigante */
+    text-shadow: 6px 6px 6px rgba(0,0,0,0.5); /* Sombra proyectada detrás de la letra */
+    margin-bottom: 40px;               /* Espacio de separación hacia abajo */
+}
+
+/* Bloque con los textos de los datos */
+.datos {
+    color: white;                      /* Letras blancas */
+    font-size: 25px;                   /* Letra grande */
+    line-height: 2;                    /* Doble espacio entre líneas de texto */
+}
+
+/* Cada línea de dato individual */
+.dato {
+    margin-bottom: 10px;               /* Separación entre cada renglón */
+}
+
+/* Fila para los botones principales */
+#botones-principal {
+    display: flex;                     /* Pone los botones uno al lado del otro */
+    justify-content: space-between;    /* Empuja un botón a cada extremo */
+    align-items: center;               /* Los alinea perfectamente al centro */
+    width: 80%;                        /* Ancho total de la fila */
+    margin: 20px auto;                 /* Centra la fila en la pantalla */
+}
+
+/* Estilo general para botones tipo enlace */
+.btn {
+    background: #236644;               /* Fondo verde oscuro */
+    color: white;                      /* Texto blanco */
+    text-decoration: none;             /* Quita la línea de enlace subrayado */
+    padding: 12px 25px;                /* Tamaño interno del botón */
+    border-radius: 20px;               /* Bordes ovalados */
+}
+
+/* Efecto al pasar el mouse por encima del botón de volver */
+.btn-volver:hover {
+    transform: scale(1.05);            /* Agranda el botón un 5% visualmente */
+}
+
+/* Fila secundaria de botones */
+#botones {
+    display: flex;                     /* Pone los botones lado a lado */
+    justify-content: center;           /* Centra el grupo de botones */
+    gap: 90px;                         /* Separación fija entre botones */
+    margin-top: 10px;                  /* Espacio hacia arriba */
+}
+
+/* Botón de eliminación */
+.eliminar {
+    background-color: #8d1f3d;         /* Fondo rojo vino */
+    color: white;                      /* Texto blanco */
+    border: none;                      /* Quita el borde de fábrica */
+    padding: 8px 18px;                 /* Tamaño interno del botón */
+    border-radius: 20px;               /* Esquinas redondeadas */
+    cursor: pointer;                   /* Muestra la mano de clic */
+}
+
+/* Botón de edición */
+.editar {
+    background-color: #d9b63d;         /* Fondo amarillo mostaza */
+    color: white;                      /* Texto blanco */
+    border: none;                      /* Quita el borde de fábrica */
+    padding: 8px 18px;                 /* Tamaño interno del botón */
+    border-radius: 20px;               /* Esquinas redondeadas */
+    cursor: pointer;                   /* Muestra la mano de clic */
+}
+
+/* --- SECCIÓN VENTANAS EMERGENTES (POPUPS) --- */
+
+/* Fondo oscuro translúcido de la ventana */
+.overlay {
+    display: none;                     /* Oculto por defecto hasta que se active */
+    position: fixed;                   /* Se queda fijo flotando sobre toda la pantalla */
+    top: 0; left: 0;                   /* Lo pega a la esquina superior izquierda */
+    width: 100%; height: 100%;         /* Cubre toda la pantalla por completo */
+    background: rgba(0,0,0,.5);        /* Color negro transparente */
+    justify-content: center;           /* Centra el cuadro interno horizontalmente */
+    align-items: center;               /* Centra el cuadro interno verticalmente */
+    z-index: 1000;                     /* Lo pone por encima de cualquier otro elemento */
+}
+
+/* Cuadro

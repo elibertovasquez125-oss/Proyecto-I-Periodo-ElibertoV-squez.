@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!-- Define la codificación de caracteres -->
+    <meta charset="UTF-8">
+
+    <!-- Permite que la página se adapte a dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título de la página -->
+    <title>Reporte de contactos</title>
+
+    <!-- Archivo CSS encargado de los estilos de la página -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reporte.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Contenedor principal del reporte -->
+    <div class="contenedor-reporte">
+
+        <!-- Título principal -->
+        <h1 class="titulo-reporte">
+            Reporte de contactos
+        </h1>
+
+        <!-- Sección donde se muestran los datos del reporte -->
+        <div class="datos-reporte">
+
+            <!-- Muestra la cantidad total de contactos registrados -->
+            <div class="dato">
+
+                👥 Total de contactos registrados:
+
+                <span>{{ total_contactos }}</span>
+
+            </div>
+
+            <!-- Muestra la cantidad total de contactos favoritos -->
+            <div class="dato">
+
+                ⭐ Total de contactos favoritos:
+
+                <span>{{ total_favoritos }}</span>
+
+            </div>
+
+        </div>
+
+        <!-- Botón para regresar a la página principal -->
+        <a href="/casa" class="btn-volver">
+
+            Volver
+
+        </a>
+
+    </div>
+
+</body>
+
+</html>

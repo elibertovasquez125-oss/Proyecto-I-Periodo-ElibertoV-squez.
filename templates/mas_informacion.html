@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Título de la página -->
+    <title>Más información</title>
+
+    <!-- Archivo CSS para los estilos de la página -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mas_informacion.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Contenedor principal -->
+    <div class="contenedor-info">
+
+    <!-- Título de la sección -->
+    <h1 class="titulo-info">
+        Más información
+    </h1>
+
+    <!-- Contenedor de los datos del contacto -->
+    <div class="datos">
+
+        <!-- Nombre del contacto -->
+        <div class="dato">👤 Nombre: {{ contacto.nombre }}</div>
+
+        <!-- Apellido del contacto -->
+        <div class="dato">👥 Apellido: {{ contacto.apellido }}</div>
+
+        <!-- Teléfono del contacto -->
+        <div class="dato">📞 Teléfono: {{ contacto.telefono }}</div>
+
+        <!-- Correo electrónico del contacto -->
+        <div class="dato">📧 Correo: {{ contacto.correo }}</div>
+
+        <!-- Dirección del contacto -->
+        <div class="dato">📍 Dirección: {{ contacto.direccion }}</div>
+
+        <!-- Categoría asignada al contacto -->
+        <div class="dato">📂 Categoria: {{ contacto.categoria }}</div>
+
+        <!-- Indica si el contacto es favorito -->
+        <div class="dato">⭐ Favorito: {{ contacto.favorito }}</div>
+
+        <!-- Estado del contacto -->
+        <div class="dato"> Estado: 🟢 Conectado</div>
+
+    </div>
+
+    <!-- Botones principales -->
+    <div id="botones-principal">
+
+        <!-- Abre el formulario de edición -->
+        <a href="#" class="btn editar" onclick="abrirPopupeditar()">Editar</a>
+
+        <!-- Regresa a la página anterior -->
+        <a href="/buscar" class="btn">Volver</a>
+
+        <!-- Formulario para eliminar el contacto -->
+        <form action="/eliminar" method="POST" onsubmit="return confirmar_eliminar()">
+
+            <!-- Envía el teléfono del contacto ocultamente -->
+            <input type="hidden"
+                name="telefono"
+                value="{{ contacto.telefono }}">
+
+            <!-- Envía el nombre del contacto ocultamente -->
+            <input type="hidden"
+                name="nombre"
+                value="{{ contacto.nombre }}">
+
+            <!-- Botón para eliminar el contacto -->
+            <button class="eliminar" type="submit">
+                Eliminar contacto
+            </button>
+
+        </form>
+
+    </div>
+
+    
+<!-- Ventana emergente para editar contactos -->
+<div class="overlay" id="overlayeditar">
+
+    <div class="popup">
+
+        <!-- Formulario para actualizar información -->
+        <form action="/editar" method="POST" onsubmit="return confirmar_actualizar()">
+
+            <!-- Teléfono oculto para identificar el contacto -->
+            <input type="hidden" name="telefono" value="{{ contacto.telefono }}">
+
+            <!-- Nuevo nombre -->
+            <input type="text" name="nuevo_nombre" placeholder="Nuevo nombre" required
+            oninvalid="this.setCustomValidity('Por favor, ingrese su nuevo nombre.')" 
+            oninput="this.setCustomValidity('')">
+            <br>
+
+            <!-- Nuevo apellido -->
+            <input type="text" name="nuevo_apellido" placeholder="Nuevo apellido" required
+            oninvalid="this.setCustomValidity('Por favor, ingrese su nuevo apellido.')" 
+            oninput="this.setCustomValidity('')">
+            <br>
+
+            <!-- Nuevo correo -->
+            <input type="text" name="nuevo_correo" placeholder="Nuevo correo" required
+            oninvalid="this.setCustomValidity('Por favor, ingrese su nuevo correo.')" 
+            oninput="this.setCustomValidity('')">
+            <br>
+
+            <!-- Nueva dirección -->
+            <input type="text" name="nueva_direccion" placeholder="Nueva dirección" required
+            oninvalid="this.setCustomValidity('Por favor, ingrese su nueva dirección.')" 
+            oninput="this.setCustomValidity('')">
+            <br><br>
+
+            <!-- Guarda los cambios realizados -->
+            <button type="submit">
+                Actualizar
+            </button>
+
+            <!-- Cierra la ventana emergente -->
+            <button type="button" onclick="cerrarPopupeditar()">
+                Cancelar
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- Archivo JavaScript para confirmaciones -->
+<script src="{{ url_for('static', filename='js/confirmaciones.js') }}"></script>
+
+<!-- Archivo JavaScript para editar contactos -->
+<script src="{{ url_for('static', filename='js/editar.js') }}"></script>
+
+</div>
+</body>
+
+</html>

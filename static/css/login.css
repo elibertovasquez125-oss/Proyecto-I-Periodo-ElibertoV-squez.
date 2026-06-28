@@ -1,0 +1,123 @@
+/* Configuración general de toda la página */
+body {
+    margin: 0;                                 /* Quita bordes del navegador */
+    padding: 0;                                /* Quita espacios internos */
+    background-color: #d9d9d9;                 /* Fondo gris claro */
+    font-family: Arial, Helvetica, sans-serif; /* Tipo de letra limpia */
+}
+
+/* Primer logo */
+#logo {
+    position: absolute;                        /* Lo despega para moverlo libre */
+    top: 10px;                                 /* Lo pega arriba */
+    left: 10px;                                /* Lo pega a la izquierda */
+}
+
+#logo img {
+    width: 160px;                              /* Ancho del logo */
+}
+
+/* Imagen usuario */
+#usuario-icon {
+    width: 100%;                                /* Ocupa la mitad del ancho */
+    display: flex;                             /* Activa contenedor flexible */
+    justify-content: center;                   /* Centra el contenido */
+    margin-top: 15px;                          /* Espacio hacia arriba */
+    right: 80px;
+}
+
+#usuario-icon img {
+    margin-top: 20px;                          /* Espacio hacia arriba */
+    width: 70px;                               /* Ancho de la foto */
+    height: 70px;                              /* Alto de la foto */
+    border-radius: 50%;                        /* Hace la foto redonda */
+}
+
+/* Caja principal */
+#formulario {
+    width: 580px;                              /* Ancho del cuadro */
+    height: 500px;                             /* Alto del cuadro */
+    background-color: #b4aca1;                 /* Fondo gris tierra */
+    margin: auto;                              /* Centra el cuadro en la pantalla */
+    margin-top: 20px;                          /* Espacio hacia arriba */
+    border-radius: 30px;                       /* Esquinas redondeadas */
+    text-align: center;                        /* Centra textos e inputs */
+    padding-top: 20px;                         /* Espacio interno arriba */
+}
+
+/* Título */
+#formulario h1 {
+    font-size: 50px;                           /* Letra gigante */
+    margin-bottom: 30px;                       /* Espacio hacia abajo */
+    font-weight: bold;                         /* Letra gruesa (negrita) */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* Letra estilo cartel */
+}
+
+/* Inputs */
+input {
+    width: 160px;                              /* Ancho de las cajas de texto */
+    padding: 8px;                              /* Grosor interno de las cajas */
+    margin: 10px;                              /* Separación por fuera entre cajas */
+    border-radius: 15px;                       /* Esquinas redondeadas en las cajas */
+    border: none;                              /* Quita el borde negro feo */
+    text-align: center;                        /* Centra el texto que escribes */
+    font-size: 11px;                           /* Letra pequeña dentro */
+}
+
+/* Texto */
+#texto {
+    margin-top: 15px;                          /* Espacio hacia arriba */
+    font-size: 28px;                           /* Letra grande */
+}
+
+/* Iconos redes */
+#imagenes {
+    display: flex;                             /* Pone los íconos en fila */
+    justify-content: center;                   /* Centra la fila de íconos */
+    gap: 45px;                                 /* Separación fija entre íconos */
+    margin-top: 20px;                          /* Espacio hacia arriba */
+    margin-bottom: 30px;                       /* Espacio hacia abajo */
+}
+
+.icono {
+    width: 45px;                               /* Ancho del ícono */
+    height: 45px;                              /* Alto del ícono */
+    border-radius: 50%;                        /* Hace el ícono redondo */
+    display: flex;                             /* Activa contenedor flexible */
+    justify-content: center;                   /* Centra contenido horizontal */
+    align-items: center;                       /* Centra contenido vertical */
+    color: white;                              /* Dibujo o letra blanca */
+    font-size: 25px;                           /* Tamaño del dibujo interno */
+    cursor: pointer;                           /* Pone la mano de clic al pasar el mouse */
+}
+
+/* Botones */
+#botones {
+    display: flex;                             /* Pone los botones lado a lado */
+    justify-content: center;                   /* Centra los botones */
+    gap: 90px;                                 /* Separación entre botones */
+    margin-top: 10px;                          /* Espacio hacia arriba */
+}
+
+.cancelar {
+    background-color: #8d1f3d;                 /* Fondo rojo/vino */
+    color: white;                              /* Letras blancas */
+    border: none;                              /* Quita el borde */
+    padding: 8px 18px;                         /* Tamaño del botón */
+    border-radius: 20px;                       /* Botón ovalado */
+    cursor: pointer;                           /* Pone la mano de clic */
+}
+
+.aceptar {
+    background-color: #2d7f46;                 /* Fondo verde */
+    color: white;                              /* Letras blancas */
+    border: none;                              /* Quita el borde */
+    padding: 8px 18px;                         /* Tamaño del botón */
+    border-radius: 20px;                       /* Botón ovalado */
+    cursor: pointer;                           /* Pone la mano de clic */
+}
+
+/* Texto final */
+#mensaje {
+    margin-top: 30px;                          /* Espacio hacia arriba */
+}

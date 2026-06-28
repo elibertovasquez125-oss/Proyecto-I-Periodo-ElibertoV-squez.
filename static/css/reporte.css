@@ -1,0 +1,93 @@
+body{
+
+    background: #d8d8d8;
+
+    font-family: Arial, sans-serif;
+
+}
+
+.contenedor-reporte{
+
+    width: 700px;
+
+    margin: 60px auto;
+
+    background: #bdb6ab;
+
+    border-radius: 30px;
+
+    padding: 40px;
+
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.4);
+
+}
+
+.titulo-reporte{
+
+    text-align: center;
+
+    color: black;
+
+    font-size: 55px;
+
+    text-shadow: 6px 6px 6px rgba(0,0,0,0.4);
+
+    margin-bottom: 40px;
+
+}
+
+.datos-reporte{
+
+    color: white;
+
+    font-size: 28px;
+
+    line-height: 2.5;
+
+}
+
+.dato{
+
+    margin-bottom: 15px;
+
+}
+
+.dato span{
+
+    font-weight: bold;
+
+    color: black;
+
+}
+
+.btn-volver{
+
+    display: block;
+
+    width: 220px;
+
+    margin: 40px auto 0 auto;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    color: white;
+
+    background: #1f7a4c;
+
+    padding: 15px;
+
+    border-radius: 20px;
+
+    font-size: 22px;
+
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+
+}
+
+.btn-volver:hover{
+
+    transform: scale(1.05);
+
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Permite que la página sea adaptable a dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título de la página -->
+    <title>Login</title>
+
+    <!-- Vincula la hoja de estilos CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+    <!-- iconos -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Logo -->
+    <div id="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}">
+    </div>
+
+    <!-- Icono de Usuario -->
+    <div id="usuario-icon">
+        <img src="{{ url_for('static', filename='images/login_perfil.png') }}">
+    </div>
+
+    <!-- Formulario -->
+    <div id="formulario">
+
+        <!-- Título principal -->
+        <h1>Login</h1>
+
+        <!-- Muestra un mensaje de error si existe -->
+        {% if error %}
+        <p style="color: red;">{{ error }} </p>    
+        {% endif %}
+
+        <!-- Formulario que envía los datos al método login -->
+        <form method="POST" action="{{ url_for('login') }}">
+
+            <!-- Campo para ingresar el usuario -->
+            <input type="text" name="usuario" placeholder="Ingrese su usuario" required
+            oninvalid="this.setCustomValidity('Por favor, ingrese su usuario.')" 
+            oninput="this.setCustomValidity('')">
+
+            <br>
+
+            <!-- Campo para ingresar la contraseña -->
+            <input type="password" name="contraseña" placeholder="Ingrese su contraseña" required
+            oninvalid="this.setCustomValidity('Por favor, ingrese su contraseña.')" 
+            oninput="this.setCustomValidity('')">
+
+            <!-- Texto informativo -->
+            <p id="texto">A traves de:</p>
+
+            <!--imagenes -->
+            <div id="imagenes">
+
+                <!-- Icono de Facebook -->
+                <div class="icono">
+                    <img src="{{ url_for('static', filename='images/facebook.png') }}">
+                </div>
+
+                <!-- Icono de WhatsApp -->
+                <div class="icono">
+                    <img src="{{ url_for('static', filename='images/whasat.png') }}">
+                </div>
+
+                <!-- Icono de Twitter -->
+                <div class="icono">
+                    <img src="{{ url_for('static', filename='images/twitter.png') }}">
+                </div>
+
+            </div>
+
+            <!-- Botones -->
+            <div id="botones">
+
+                <!-- Botón para limpiar los campos -->
+                <button class="cancelar" type="reset">
+                    Cancelar
+                </button>
+
+                <!-- Botón para enviar el formulario -->
+                <button class="aceptar" type="submit">
+                    Aceptar
+                </button>
+            </div>
+
+            <!-- Mensaje mostrado al usuario -->
+            <p id="mensaje">Bienvenido de nuevo, por favor ingresa tus datos.</p>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

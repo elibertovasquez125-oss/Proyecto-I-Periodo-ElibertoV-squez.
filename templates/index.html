@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Adaptación para dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título de la página -->
+    <title>Lista de contactos</title>
+
+    <!-- Archivo de estilos CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<!-- Contenedor principal -->
+<div class="contenedor">
+
+    <!-- ICONOS -->
+    <div class="top-icons">
+
+        <!-- Botón de menú -->
+        <div class="menu-btn">
+            <img src="{{ url_for('static', filename='images/menu_barra.png') }}">
+        </div>
+
+        <!-- Botón de usuario -->
+        <div class="user-btn">
+            <img src="{{ url_for('static', filename='images/sesion_usuario.png') }}">
+        </div>
+
+    </div>
+
+    <!-- TITULO -->
+    <div class="titulo">
+        <h1>Lista de contactos <br> registrados</h1>
+    </div>
+
+    <!-- parte principal -->
+    <div class="panel">
+
+        <!-- Formulario para buscar contactos -->
+        <form action="/buscar" method="GET" class="form-buscar">
+
+            <input  type="text"
+                    name="nombre"
+                    placeholder="Buscar contacto" class="search">
+
+            <button type="submit" class="boton-buscar">Buscar</button>
+
+        </form>
+
+        <!-- lista de contactos -->
+        <div class="lista-contactos">
+
+            <!-- Recorre todos los contactos registrados -->
+            {% for contacto in contactos %}
+
+            <div class="contacto">
+
+                <!-- Imagen del contacto -->
+                <div class="avatar">
+                    <img src="{{ url_for('static', filename='images/foto_contacto.png') }}">
+                </div>
+
+                <!-- Información del contacto -->
+                <div class="info">
+
+                    <h3>
+                    {{ contacto.nombre }}
+                    {{ contacto.apellido }}
+                    </h3>
+
+                    <p>📞 {{ contacto.telefono }}</p>
+
+                    <p>📧 {{ contacto.correo }}</p>
+
+                    <p>📍 {{ contacto.direccion }}</p>
+
+                    <p>📂 {{ contacto.categoria }}</p>
+
+                    <p>⭐ {{ contacto.favorito }}</p>
+
+                    <!-- Botón para ver más información -->
+                    <form action="/mas_informacion" method="POST">
+
+                        <input type="hidden"
+                                name="telefono"
+                                value="{{ contacto.telefono }}">
+
+                            <button type="submit" class="btn-informacion">Más información</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- botones -->
+        <div class="botones">
+
+            <!-- Abre el popup para eliminar -->
+            <button class="btn eliminar" onclick="abrirPopupeliminar()">
+                Eliminar contacto
+            </button>
+
+            <!-- Abre el popup para editar -->
+            <button class="btn editar" onclick="abrirPopupeditar()">
+                Editar contacto
+            </button>
+
+            <!-- Abre el popup para agregar -->
+            <button class="btn agregar" onclick="abrirPopupagregar()">
+                Agregar contacto
+            </button>
+
+            <!-- Muestra el reporte -->
+            <button class="btn-especiales"
+                onclick="window.location.href='/reporte'">Ver reporte
+            </button>
+
+            <!-- Ordena los contactos alfabéticamente -->
+            <button class="btn-especiales" onclick="window.location.href='/ordenar'">
+            Ordenar A-Z
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- popup de agregar -->
+    <div class="overlay" id="overlayagregar">
+
+        <div class="popup">
+
+            <h2>Agregar contacto</h2>
+
+            <!-- Formulario para agregar un nuevo contacto -->
+            <form action="/agregar" method="POST" onsubmit="return confirmar_agregar()">
+
+                <input type="text" name="nombre" placeholder="Nombre" required
+                oninvalid="this.setCustomValidity('Por favor, ingrese el nombre.')" 
+                oninput="this.setCustomValidity('')">
+                <br>
+
+                <input type="text" name="apellido" placeholder="Apellido">
+                <br>
+
+                <input type="text" name="telefono" placeholder="Telefono" minlength="8" maxlength="8" required 
+                oninvalid="this.setCustomValidity('Por favor, ingrese el número de teléfono.')" 
+                oninput="this.setCustomValidity('')">
+                <br>
+
+                <input type="email" name="correo" placeholder="Correo" required
+                oninvalid="this.setCustomValidity('Por favor, ingrese el correo.')" 
+                oninput="this.setCustomValidity('')">
+                <br>
+
+                <input type="text" name="direccion" placeholder="Direccion">
+                <br>
+
+                <!-- Selección de categoría -->
+                <select name="categoria">
+                    <option value="Familia">Familia</option>
+                    <option value="Trabajo">Trabajo</option>
+                    <option value="Amigos">Amigos</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <br>
+
+                <!-- Selección de favorito -->
+                <select name="favorito">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                </select>
+
+                <br><br>
+
+                <!-- Guarda el contacto -->
+                <button id="agregar" type="submit">
+                Guardar contacto
+                </button>
+
+            </form>
+
+            <br>
+
+            <!-- Cierra el popup -->
+            <button id="cerrar" onclick="cerrarPopupagregar()">
+                Cerrar
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Popup de eliminar -->
+    <div class="overlay" id="overlayeliminar">
+
+        <div class="popup">
+
+            <h2>Eliminar contacto</h2>
+
+            <!-- Formulario para eliminar un contacto -->
+            <form action="/eliminar" method="POST" onsubmit="return confirmar_eliminar()">
+
+                <input type="text" name="nombre" placeholder="Nombre">
+
+                <br><br>
+
+                <input type="number" name="telefono" placeholder="Telefono">
+
+                <br><br>
+
+                <button type="submit" class="btn-editar-eliminar-popup">
+                Eliminar contacto
+                </button>
+
+            </form>
+
+            <br>
+
+            <!-- Cierra el popup -->
+            <button id="cerrar" onclick="cerrarPopupeliminar()">
+                Cerrar
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Popup de editar -->
+    <div class="overlay" id="overlayeditar">
+
+        <div class="popup">
+
+            <h2>Editar contacto</h2>
+
+            <!-- Formulario para modificar datos de un contacto -->
+            <form action="/editar" method="POST" onsubmit="return confirmar_actualizar()" >
+
+                <input type="text" name="telefono" placeholder="Telefono">
+
+                <br><br>
+
+                <input type="text" name="nuevo_nombre" placeholder="Nuevo nombre" required
+                oninvalid="this.setCustomValidity('Por favor, ingrese nuevo nombre.')" 
+                oninput="this.setCustomValidity('')">
+                <br>
+
+                <input type="text" name="nuevo_apellido" placeholder="Nuevo apellido">
+                <br>
+
+                <input type="text" name="nuevo_correo" placeholder="Nuevo correo">
+                <br>
+
+                <input type="text" name="nueva_direccion" placeholder="Nueva direccion">
+                <br><br>
+
+                <!-- Guarda los cambios realizados -->
+                <button type="submit" class="btn-editar-eliminar-popup">
+                    Editar contacto
+                </button>
+
+            </form>
+
+            <br>
+
+            <!-- Cierra el popup -->
+            <button onclick="cerrarPopupeditar()">
+                Cerrar
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Logo de aplicacipon -->
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}">
+        <p>CONTACTO TOTAL</p>
+    </div>
+
+</div>
+
+<!-- Archivos JavaScript utilizados -->
+<script src="{{ url_for('static', filename='js/js.js') }}"></script>
+<script src="{{ url_for('static', filename='js/eliminar.js')}}"></script>
+<script src="{{ url_for('static', filename='js/buscar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/editar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/confirmaciones.js') }}"></script>
+
+</body>
+</html>
